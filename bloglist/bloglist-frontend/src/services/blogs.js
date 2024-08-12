@@ -13,10 +13,14 @@ const getAll = async () => {
 };
 
 const comment = async (commentObject) => {
-  console.log(commentObject.blog)
+  const config = {
+    headers: { Authorization: token },
+  };
+
   const response = await axios.post(
     `${baseUrl}/${commentObject.blog}/comments`,
     commentObject,
+    config,
   );
   return response.data;
 };

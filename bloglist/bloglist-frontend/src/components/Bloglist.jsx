@@ -37,7 +37,7 @@ const StyledBlogObject = styled(BlogObject)`
 
 const Bloglist = () => {
   const blogs = useSelector((state) => state.blogs);
-  console.log(blogs);
+  // console.log(blogs);
 
   return (
     <div>

@@ -1,17 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import PropTypes from "prop-types";
 import { likeBlog } from "../reducers/blogreducer";
 import { removeBlog } from "../reducers/blogreducer";
 import { commentBlog } from "../reducers/blogreducer";
-// import { setNotification } from "../reducers/notificationreducer";
+import { Button, Input } from "./Styles.jsx";
+import { setNotification } from "../reducers/notificationreducer";
 
 const Blog = ({ blog }) => {
   if (!blog) {
     return null;
   }
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
   const updateBlog = () => {
@@ -30,7 +31,7 @@ const Blog = ({ blog }) => {
     event.preventDefault();
     const content = event.target.content.value;
     event.target.content.value = "";
-    console.log(content);
+
     dispatch(
       commentBlog({
         content: content,
@@ -41,16 +42,16 @@ const Blog = ({ blog }) => {
 
   const remove = async (id) => {
     await dispatch(removeBlog(id));
-    // dispatch(
-    //   setNotification(
-    //     {
-    //       data: `Blog deleted!`,
-    //       type: "info",
-    //     },
-    //     3000,
-    //   ),
-    // );
-    // navigate("/");
+    await dispatch(
+      setNotification(
+        {
+          data: `Blog deleted!`,
+          type: "info",
+        },
+        3000,
+      ),
+    );
+    navigate("/");
   };
 
   return (
@@ -61,33 +62,31 @@ const Blog = ({ blog }) => {
       {blog.url}
       <p>
         likes: {blog.likes}{" "}
-        <button
+        <Button
           onClick={() => {
             updateBlog();
           }}
         >
           like
-        </button>
+        </Button>
       </p>
       <p>added by {blog.user.name}</p>
       {blog.user.name === user.name ? (
         <p>
-          <button
+          <Button
             onClick={() => {
               remove(blog.id);
             }}
           >
             remove
-          </button>
+          </Button>
         </p>
       ) : null}
       <h3>comments</h3>
       {/* <button onClick={console.log("testi")}>add comment</button> */}
       <form onSubmit={comment}>
-        <div>
-          <input name="content" />
-        </div>
-        <button type="submit">add comment</button>
+        <Input name="content" />
+        <Button type="submit">add comment</Button>
       </form>
       <ul>
         {blog.comments.map((comment) => (

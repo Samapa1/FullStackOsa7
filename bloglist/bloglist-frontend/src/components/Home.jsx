@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import Bloglist from "./Bloglist";
-import Notification from "./Notification";
 import Togglable from "./Togglable";
 import Newblogform from "./Newblogform";
 import LoginForm from "./Loginform";
@@ -24,7 +23,6 @@ const Home = () => {
   return (
     <div>
       <h2>blogs</h2>
-      <Notification />
       <div>
         <Togglable buttonLabel="create new blog" ref={blogFormRef}>
           <Newblogform />

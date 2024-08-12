@@ -1,14 +1,16 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { showUsers } from "../reducers/usersreducer";
+import { initializeUser } from "../reducers/userreducer";
 
-const styleobj = {
-  marginLeft: 150,
-  fontWeight: "bold",
-};
+// const styleobj = {
+//   marginLeft: 150,
+//   fontWeight: "bold",
+// };
 
 const UserObject = ({ user }) => {
   const blogs = user.blogs.length;
-  console.log(blogs);
   if (user !== null) {
     return (
       <tbody>
@@ -26,7 +28,18 @@ const UserObject = ({ user }) => {
 };
 
 const Userlist = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(showUsers());
+  }, []);
+
+  useEffect(() => {
+    dispatch(initializeUser());
+  }, []);
+
   const listUsers = useSelector((state) => state.users);
+
   if (listUsers !== null) {
     return (
       <div>

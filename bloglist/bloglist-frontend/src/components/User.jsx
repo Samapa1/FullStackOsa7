@@ -1,9 +1,8 @@
-const User = ({ user }) => {
+const User = ({user}) => {
   if (!user) {
     return null;
   }
-  console.log("käyttäjä");
-  console.log(user)
+
   return (
     <div>
       <h2>{user.name}</h2>

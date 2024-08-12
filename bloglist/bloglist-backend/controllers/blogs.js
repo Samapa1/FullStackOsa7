@@ -55,22 +55,26 @@ blogsRouter.post("/", middleware.userExtractor, async (request, response) => {
   }
 });
 
-blogsRouter.post("/:id/comments", async (request, response) => {
-  const body = request.body;
-  if (!body.content) {
-    response.status(400).end();
-  } else {
-    const comment = new Comment({
-      content: body.content,
-      blog: request.params.id,
-    });
-    const newComment = await comment.save();
-    const blog = await Blog.findById(request.params.id);
-    blog.comments = blog.comments.concat(newComment._id);
-    await blog.save();
-    response.status(201).json(newComment);
-  }
-});
+blogsRouter.post(
+  "/:id/comments",
+  middleware.userExtractor,
+  async (request, response) => {
+    const body = request.body;
+    if (!body.content) {
+      response.status(400).end();
+    } else {
+      const comment = new Comment({
+        content: body.content,
+        blog: request.params.id,
+      });
+      const newComment = await comment.save();
+      const blog = await Blog.findById(request.params.id);
+      blog.comments = blog.comments.concat(newComment._id);
+      await blog.save();
+      response.status(201).json(newComment);
+    }
+  },
+);
 
 blogsRouter.post("/reset", async (request, response) => {
   await Blog.deleteMany({});
@@ -106,14 +110,13 @@ blogsRouter.delete(
 
 blogsRouter.put("/:id", middleware.userExtractor, async (request, response) => {
   const body = request.body;
-  const user = request.user;
 
   const blog = {
     title: body.title,
     author: body.author,
     url: body.url,
     likes: typeof body.likes !== "undefined" ? body.likes : 0,
-    user: user._id,
+    user: body.user,
   };
 
   const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, {

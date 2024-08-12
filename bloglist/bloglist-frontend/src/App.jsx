@@ -12,6 +12,7 @@ import { initializeUser } from "./reducers/userreducer";
 import { showUsers } from "./reducers/usersreducer";
 import { initializeBlogs } from "./reducers/blogreducer";
 import { Navigation, Page } from "./components/Styles.jsx";
+import Notification from "./components/Notification.jsx";
 
 const App = () => {
   const padding = {
@@ -24,22 +25,22 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("initializeUser");
+    // console.log("initializeUser");
     dispatch(initializeUser());
   }, []);
 
   useEffect(() => {
-    console.log("initializeBlogs");
+    // console.log("initializeBlogs");
     dispatch(initializeBlogs());
   }, []);
 
   useEffect(() => {
-    console.log("ishowUsers");
+    // console.log("ishowUsers");
     dispatch(showUsers());
   }, []);
 
   const users = useSelector((state) => state.users);
-  console.log(users);
+  // console.log(users);
 
   const blogs = useSelector((state) => state.blogs);
   const user = useSelector((state) => state.user);
@@ -54,7 +55,7 @@ const App = () => {
     ? blogs.find((blog) => blog.id === matcblog.params.id)
     : null;
 
-  console.log("rendering");
+  // console.log("rendering");
 
   return (
     <Page>
@@ -78,6 +79,8 @@ const App = () => {
             </Link>
           )}
         </Navigation>
+        <br></br>
+        <Notification />
         {/* </div> */}
         <Routes>
           <Route path="/users/:id" element={<User user={foundUser} />} />
@@ -95,26 +98,3 @@ const App = () => {
 };
 
 export default App;
-
-// import users from "./services/users";
-
-// const ListUser = ({ user }) => {
-//   const blogs = user.blogs.length;
-//   console.log(blogs);
-//   if (user !== null) {
-//     return (
-//       <div>
-//         <Link to={`/users/${user.id}`}>{user.name}</Link> {blogs}
-//       </div>
-//     );
-//   }
-// };
-
-// const Userlist = () => (
-//   <div>
-//     <h2>Users</h2>
-//     {users.map((user) => (
-//       <ListUser key={user.id} ListUser={user} />
-//     ))}
-//   </div>
-// );

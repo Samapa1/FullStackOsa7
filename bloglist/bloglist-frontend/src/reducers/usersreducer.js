@@ -8,7 +8,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     showUsersAction(state, action) {
-      console.log(action.payload);
+      // console.log("haetaan käyttäjät");
+      // console.log(action.payload);
       return action.payload;
     },
   },

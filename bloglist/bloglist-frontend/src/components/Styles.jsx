@@ -24,7 +24,7 @@ export const Navigation = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.0em;
+  font-size: 1em;
   text-align: left;
   color: #447d6d;
 `;

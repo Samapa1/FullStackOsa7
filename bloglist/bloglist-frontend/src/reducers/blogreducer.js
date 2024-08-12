@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import blogService from "../services/blogs";
-import { setNotification } from "./notificationreducer";
+// import { setNotification } from "./notificationreducer";
 
 const sortBlogs = (a, b) => {
   return b.likes - a.likes;
@@ -21,6 +21,8 @@ const blogSlice = createSlice({
     },
     likeBlogAction(state, action) {
       const likedBlog = action.payload;
+      // console.log(JSON.parse(JSON.stringify(state)));
+      // state.map((blog) => console.log(JSON.parse(JSON.stringify(blog))));
       const updated = state.map((blog) =>
         blog.id !== likedBlog.id ? blog : { ...blog, likes: likedBlog.likes },
       );
@@ -28,15 +30,12 @@ const blogSlice = createSlice({
     },
     commentBlogAction(state, action) {
       const commentedBlog = action.payload;
-      console.log("tulostus");
-      console.log(commentedBlog);
       const commented = state.map((blog) =>
         // console.log(blog)
         blog.id !== commentedBlog.blog
           ? blog
           : { ...blog, comments: blog.comments.concat(commentedBlog) },
       );
-      console.log(commented);
       return commented.sort(sortBlogs);
     },
     removeBlogAction(state, action) {
@@ -77,7 +76,6 @@ export const likeBlog = (blogObject) => {
 };
 
 export const commentBlog = (commentObject) => {
-  console.log(commentObject);
   return async (dispatch) => {
     const data = await blogService.comment(commentObject);
     dispatch(commentBlogAction(data));
@@ -94,56 +92,17 @@ export const removeBlog = (id) => {
     ) {
       await blogService.remove(id);
       dispatch(removeBlogAction(id));
-      dispatch(
-        setNotification(
-          {
-            data: `Blog deleted!`,
-            type: "info",
-          },
-          3000,
-        ),
-      );
+      // dispatch(
+      //   setNotification(
+      //     {
+      //       data: `Blog deleted!`,
+      //       type: "info",
+      //     },
+      //     3000,
+      //   ),
+      // );
     }
   };
 };
 
 export default blogSlice.reducer;
-
-// old version
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const sortBlogs = (a, b) => {
-//   return b.likes - a.likes;
-// };
-
-// const initialState = [];
-// const blogSlice = createSlice({
-//   name: "blogs",
-//   initialState,
-//   reducers: {
-//     createNewBlog(state, action) {
-//       state.push(action.payload);
-//     },
-//     setBlogs(state, action) {
-//       const sorted = action.payload.sort(sortBlogs);
-//       return sorted;
-//     },
-//     likeBlogAction(state, action) {
-//       const likedBlog = action.payload;
-//       const updated = state.map((blog) =>
-//         blog.id !== likedBlog.id ? blog : { ...blog, likes: likedBlog.likes },
-//       );
-//       return updated.sort(sortBlogs);
-//     },
-//     removeBlogAction(state, action) {
-//       const id = action.payload;
-//       const updated = state.filter((blog) => blog.id !== id);
-//       return updated.sort(sortBlogs);
-//     },
-//   },
-// });
-
-// export const { createNewBlog, setBlogs, likeBlogAction, removeBlogAction } =
-//   blogSlice.actions;
-
-// export default blogSlice.reducer;
