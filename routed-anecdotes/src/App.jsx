@@ -1,25 +1,11 @@
 import { useState } from 'react'
 import {
-  useParams,
   useNavigate,
   useMatch,
-  BrowserRouter as Router,
   Routes, Route, Link
 } from 'react-router-dom'
 import useField from './hooks'
 
-// const Menu = () => {
-//   const padding = {
-//     paddingRight: 5
-//   }
-//   return (
-//     <div>
-//       <a href='#' style={padding}>anecdotes</a>
-//       <a href='#' style={padding}>create new</a>
-//       <a href='#' style={padding}>about</a>
-//     </div>
-//   )
-// }
 
 const AnecdoteList = ({ anecdotes }) => (
   <div>
@@ -71,10 +57,6 @@ const Footer = () => (
 )
 
 const CreateNew = (props) => {
-  // const [content, setContent] = useState('')
-  // const [author, setAuthor] = useState('')
-  // const [info, setInfo] = useState('')
-
   
   const content = useField('content')
   const author = useField('author')
@@ -220,27 +202,3 @@ return (
 )
 }
 export default App
-
-
-  // return (
-  //   <div>
-  //     <h1>Software anecdotes</h1>
-  //     <Menu />
-  //     <AnecdoteList anecdotes={anecdotes} />
-  //     <About />
-  //     <CreateNew addNew={addNew} />
-  //     <Footer />
-  //   </div>
-  // )
-
-
-// old staff
-       {/* <input name='content' value={content} onChange={(e) => setContent(e.target.value)} /> */}
-         {/* <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} /> */}
-                 {/* <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} /> */}
-
-            {/* <input
-  content={contentfield.name}
-  value={contentfield.value}
-  onChange={contentfield.onChange} 
-  />  */}

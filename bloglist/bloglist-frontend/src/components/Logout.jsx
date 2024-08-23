@@ -10,7 +10,7 @@ const logout = () => {
   const handleLogout = async () => {
     await dispatch(removeUser());
     await dispatch(setNotification({ data: "logged out", type: "info" }, 3000));
-    await navigate("/");
+    navigate("/");
   };
 
   return <Button onClick={handleLogout}>log out</Button>;
