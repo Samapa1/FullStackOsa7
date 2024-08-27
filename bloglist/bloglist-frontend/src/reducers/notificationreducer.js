@@ -31,26 +31,3 @@ export const setNotification = (data, timeout) => {
 };
 
 export default notificationSlice.reducer;
-
-// old version
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const initialState = { data: null, type: "info" };
-// const notificationSlice = createSlice({
-//   name: "notification",
-//   initialState,
-//   reducers: {
-//     setNotification(state, action) {
-//       const message = action.payload;
-//       return message;
-//     },
-//     removeNotification() {
-//       return initialState;
-//     },
-//   },
-// });
-
-// export const { setNotification, removeNotification } =
-//   notificationSlice.actions;
-
-// export default notificationSlice.reducer;

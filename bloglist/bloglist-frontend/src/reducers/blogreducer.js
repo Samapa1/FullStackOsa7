@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import blogService from "../services/blogs";
-// import { setNotification } from "./notificationreducer";
 
 const sortBlogs = (a, b) => {
   return b.likes - a.likes;
@@ -21,8 +20,6 @@ const blogSlice = createSlice({
     },
     likeBlogAction(state, action) {
       const likedBlog = action.payload;
-      // console.log(JSON.parse(JSON.stringify(state)));
-      // state.map((blog) => console.log(JSON.parse(JSON.stringify(blog))));
       const updated = state.map((blog) =>
         blog.id !== likedBlog.id ? blog : { ...blog, likes: likedBlog.likes },
       );
@@ -31,7 +28,6 @@ const blogSlice = createSlice({
     commentBlogAction(state, action) {
       const commentedBlog = action.payload;
       const commented = state.map((blog) =>
-        // console.log(blog)
         blog.id !== commentedBlog.blog
           ? blog
           : { ...blog, comments: blog.comments.concat(commentedBlog) },
@@ -92,15 +88,6 @@ export const removeBlog = (id) => {
     ) {
       await blogService.remove(id);
       dispatch(removeBlogAction(id));
-      // dispatch(
-      //   setNotification(
-      //     {
-      //       data: `Blog deleted!`,
-      //       type: "info",
-      //     },
-      //     3000,
-      //   ),
-      // );
     }
   };
 };

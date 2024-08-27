@@ -20,7 +20,6 @@ const loginForm = () => {
 
     try {
       await dispatch(setUser({ username, password }));
-      // const user = useSelector((state) => state.user);
       dispatch(setNotification({ data: "login ok!", type: "info" }, 3000));
     } catch (exception) {
       console.log(exception);

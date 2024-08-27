@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import loginService from "../services/login";
 import blogService from "../services/blogs";
-// import userService from "../services/users";
 
 const initialState = null;
 
@@ -12,10 +11,6 @@ const userSlice = createSlice({
     setUserAction(state, action) {
       return action.payload;
     },
-    // showUsersAction(state, action) {
-    //   console.log(action.payload);
-    //   return action.payload;
-    // },
   },
 });
 
@@ -48,14 +43,4 @@ export const removeUser = () => {
   };
 };
 
-// export const showUsers = () => {
-//   return async (dispatch) => {
-//     const users = await userService.getAll();
-//     console.log(users);
-//     dispatch(showUsersAction(users));
-//   };
-// };
-// window.localStorage.removeItem("loggedBlogappUser");
-// setUser(null);
-// handleNotification({ data: "logged out", type: "info" });
 export default userSlice.reducer;

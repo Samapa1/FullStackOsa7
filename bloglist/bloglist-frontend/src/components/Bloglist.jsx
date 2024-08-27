@@ -2,20 +2,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-// const blogStyle = {
-//   paddingTop: 10,
-//   paddingLeft: 2,
-//   border: "solid",
-//   borderWidth: 1,
-//   marginBottom: 5,
-// };
-
-// const style = {
-//     border: 'solid',
-//     padding: 10,
-//     borderWidth: 1
-//   }
-
 const BlogObject = ({ className, blog }) => {
   return (
     <div className={className}>
@@ -37,7 +23,6 @@ const StyledBlogObject = styled(BlogObject)`
 
 const Bloglist = () => {
   const blogs = useSelector((state) => state.blogs);
-  // console.log(blogs);
 
   return (
     <div>

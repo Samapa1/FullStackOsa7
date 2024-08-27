@@ -19,28 +19,21 @@ const App = () => {
     padding: 5,
   };
 
-  // const menuStyle = {
-  //   backgroundColor: "lightgrey",
-  // };
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log("initializeUser");
     dispatch(initializeUser());
   }, []);
 
   useEffect(() => {
-    // console.log("initializeBlogs");
     dispatch(initializeBlogs());
   }, []);
 
   useEffect(() => {
-    // console.log("ishowUsers");
     dispatch(showUsers());
   }, []);
 
   const users = useSelector((state) => state.users);
-  // console.log(users);
 
   const blogs = useSelector((state) => state.blogs);
   const user = useSelector((state) => state.user);
@@ -55,12 +48,9 @@ const App = () => {
     ? blogs.find((blog) => blog.id === matcblog.params.id)
     : null;
 
-  // console.log("rendering");
-
   return (
     <Page>
       <>
-        {/* <div style={menuStyle}> */}
         <Navigation>
           <Link style={padding} to="/">
             blogs
@@ -81,7 +71,6 @@ const App = () => {
         </Navigation>
         <br></br>
         <Notification />
-        {/* </div> */}
         <Routes>
           <Route path="/users/:id" element={<User user={foundUser} />} />
           <Route path="/blogs/:id" element={<Blog blog={foundBlog} />} />

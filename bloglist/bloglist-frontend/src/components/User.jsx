@@ -6,7 +6,6 @@ const User = ({user}) => {
   return (
     <div>
       <h2>{user.name}</h2>
-      {/* <div>{note.user}</div> */}
       <p>added blogs</p>
       <div>
         <ul>
