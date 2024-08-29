@@ -8,9 +8,9 @@ const logout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = async () => {
+    navigate("/");
     await dispatch(removeUser());
     await dispatch(setNotification({ data: "logged out", type: "info" }, 3000));
-    navigate("/");
   };
 
   return <Button onClick={handleLogout}>log out</Button>;

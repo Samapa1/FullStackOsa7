@@ -60,7 +60,7 @@ const App = () => {
           </Link>
           {user ? (
             <>
-              <em>{user.name} logged in </em>
+              <span>{user.name} logged in </span>
               <Logout />
             </>
           ) : (

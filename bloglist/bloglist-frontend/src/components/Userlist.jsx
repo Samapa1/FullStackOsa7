@@ -8,14 +8,12 @@ const UserObject = ({ user }) => {
   const blogs = user.blogs.length;
   if (user !== null) {
     return (
-      <tbody>
-        <tr>
-          <Link to={`/users/${user.id}`}>
-            <td>{user.name}</td>
-          </Link>
-          <td>{blogs}</td>
-        </tr>
-      </tbody>
+      <tr>
+        <td>
+          <Link to={`/users/${user.id}`}>{user.name}</Link>
+        </td>
+        <td>{blogs}</td>
+      </tr>
     );
   }
 };
@@ -43,10 +41,10 @@ const Userlist = () => {
               <th> </th>
               <th>blogs created</th>
             </tr>
+            {listUsers.map((user) => (
+              <UserObject key={user.id} user={user} />
+            ))}
           </tbody>
-          {listUsers.map((user) => (
-            <UserObject key={user.id} user={user} />
-          ))}
         </table>
       </div>
     );
